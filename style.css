@@ -292,7 +292,11 @@ h1.big em{font-style:normal;color:var(--red);-webkit-text-stroke:0}
     /* COME LAVORIAMO: lo scroll verticale fa scorrere le carte in orizzontale */
     @media(min-width:960px){
       .hs{height:320vh;view-timeline:--hs block}
-      .hspin{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;box-sizing:border-box;padding:calc(var(--navh) + 16px) 0 24px}
+      .hspin{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;box-sizing:border-box;padding:calc(var(--navh) + 20px) 0 20px;overflow:hidden}
+      /* tutto deve stare sotto la barra di navigazione: titolo e carte si adattano all'altezza dello schermo */
+      .hshead{margin-bottom:clamp(12px,2.5vh,28px)}
+      .hshead .h2{font-size:clamp(32px,min(5vw,7vh),64px);margin-bottom:0}
+      .hp{min-height:0;height:clamp(280px,calc(100vh - var(--navh) - 250px),480px)}
       .track{overflow:visible;width:max-content;scroll-snap-type:none;animation:slide linear both;animation-timeline:--hs;animation-range:contain 0% contain 100%}
       .hsbar span{animation:growFrom linear both;animation-timeline:--hs;animation-range:contain 0% contain 100%}
     }
