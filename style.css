@@ -157,7 +157,7 @@ h1.big em{font-style:normal;color:var(--red);-webkit-text-stroke:0}
   .hs{padding:0}
   .hspin{padding:120px 0 60px}
   .track{padding:4px 32px 24px;gap:24px}
-  .hp{flex:0 0 min(860px,70vw);max-width:none;grid-template-rows:none;grid-template-columns:1fr 1fr;min-height:460px}
+  .hp{flex:0 0 min(860px,70vw);max-width:none;grid-template-rows:minmax(0,1fr);grid-template-columns:1fr 1fr;min-height:460px}
   .hp>div{padding:44px;display:flex;flex-direction:column;justify-content:center}
   .hp h3{font-size:44px}
   .hp p{font-size:18px}
