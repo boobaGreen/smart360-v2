@@ -166,13 +166,14 @@ h1.big em{font-style:normal;color:var(--red);-webkit-text-stroke:0}
   .hsbar span{display:block;height:100%;width:100%;background:var(--red);transform-origin:0 50%;transform:scaleX(.25)}
 }
 
-/* ===== STRADA + CAMION ===== */
-.road{position:relative;height:120px;background:var(--paper);overflow:hidden}
-.road::before{content:"";position:absolute;left:0;right:0;top:70px;height:2px;background:var(--ink)}
-.road::after{content:"";position:absolute;left:0;right:0;top:86px;height:0;border-top:2px dashed rgba(14,20,32,.35)}
-.truck{position:absolute;top:6px;left:-200px;will-change:transform}
-.truck svg{width:168px;height:auto}
-
+/* ===== NASTRO DA IMBALLO: chiude "Come lavoriamo" come si chiude uno scatolone ===== */
+.tape{position:relative;height:0;z-index:3}
+.roll{position:absolute;left:-5%;right:-5%;top:-34px;height:68px;transform:rotate(-2.2deg);background:
+  linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,0) 40%,rgba(0,0,0,.08)),#C9A26B;
+  box-shadow:0 10px 24px -8px rgba(0,0,0,.45);display:flex;align-items:center;overflow:hidden;clip-path:inset(0 0 0 0)}
+.roll::before,.roll::after{content:"";position:absolute;left:0;right:0;height:3px;background:repeating-linear-gradient(90deg,rgba(0,0,0,.12) 0 6px,transparent 6px 12px)}
+.roll::before{top:0}.roll::after{bottom:0}
+.roll span{white-space:nowrap;font:800 22px/1 var(--d);letter-spacing:.14em;color:var(--red);padding-left:24px}
 /* ===== DOVE ===== */
 .where{padding:88px 0 80px;background:var(--ink)}
 .chips{list-style:none;margin:8px 0 36px;padding:0;display:flex;flex-wrap:wrap;gap:10px}
@@ -296,8 +297,9 @@ h1.big em{font-style:normal;color:var(--red);-webkit-text-stroke:0}
       .hsbar span{animation:growFrom linear both;animation-timeline:--hs;animation-range:contain 0% contain 100%}
     }
 
-    /* STRADA: il camion attraversa lo schermo mentre la striscia passa */
-    .truck{animation:drive linear both;animation-timeline:view();animation-range:entry 0% exit 100%}
+    /* NASTRO: si srotola da sinistra entrando nello schermo, poi la scritta scorre piano */
+    .roll{animation:unroll linear both;animation-timeline:view();animation-range:entry 10% cover 45%}
+    .roll span{animation:tapeText linear both;animation-timeline:view();animation-range:entry 0% exit 100%}
 
     /* DOVE: leggero parallasse delle foto */
     .ph img{animation:par linear both;animation-timeline:view();animation-range:entry 0% exit 100%}
@@ -312,5 +314,6 @@ h1.big em{font-style:normal;color:var(--red);-webkit-text-stroke:0}
 @keyframes fadeOut{from{opacity:1}to{opacity:0}}
 @keyframes shrink{from{transform:scale(1);filter:brightness(1)}to{transform:scale(.92);filter:brightness(.7)}}
 @keyframes slide{from{transform:translateX(0)}to{transform:translateX(calc(-100% + 100vw))}}
-@keyframes drive{from{transform:translateX(0) }to{transform:translateX(calc(100vw + 220px))}}
+@keyframes unroll{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes tapeText{from{transform:translateX(0)}to{transform:translateX(-30%)}}
 @keyframes par{from{transform:scale(1.08) translateY(4%)}to{transform:scale(1.08) translateY(-4%)}}
